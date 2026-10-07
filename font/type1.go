@@ -400,7 +400,7 @@ func (f *Font) applyEncodingDifferences(diffs core.Array) error {
 			return fmt.Errorf("invalid differences array item: %T", item)
 		}
 	}
-	f.customEncoding = NewCustomEncodingFromGlyphs(GetEncoding(f.Encoding), glyphs)
+	f.customEncoding = newCustomEncodingFromGlyphs(GetEncoding(f.Encoding), glyphs, strings.EqualFold(f.BaseFont[strings.LastIndex(f.BaseFont, "+")+1:], "ZapfDingbats"))
 	return nil
 }
 

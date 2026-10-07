@@ -17,6 +17,7 @@ A Go text extraction library with a fluent API, designed for RAG (Retrieval-Augm
 - **HTML Navigation Filtering** - Remove headers, footers, nav, and sidebars from web pages with configurable exclusion modes
 - **RAG-Ready Chunking** - Semantic chunking with metadata: size-bounded chunks (no tiny fragments or over-max chunks) and automatic chapter-heading recovery for documents without explicit heading markup (e.g. scanned/OCR books)
 - **Markdown Export** - Convert extracted content to markdown
+- **Glyph Name Decoding** - Pinned Adobe Glyph List and Zapf Dingbats mappings, Unicode-name and compound-name rules, and retained TeX aliases; regenerate offline with `go generate ./font`
 - **PDF 1.0-1.7 Support** - Including modern XRef streams (PDF 1.5+)
 - **Encrypted PDFs** - Opens RC4 and AES (V2/V3) encrypted files secured with an empty user/owner password
 - **Damaged-PDF Recovery** - Rebuilds a missing/corrupt cross-reference table by scanning, and recovers streams with a missing or wrong `/Length`
