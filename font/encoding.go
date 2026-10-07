@@ -419,6 +419,15 @@ func IsValidUTF8(s string) bool {
 // This is used by NewCustomEncodingFromGlyphs to convert Differences arrays
 // Reference: Adobe Glyph List Specification
 var glyphNameToUnicode = map[string]rune{
+	"alpha": 0x03B1, "beta": 0x03B2, "gamma": 0x03B3, "epsilon1": 0x03F5,
+	"lambda": 0x03BB, "sigma": 0x03C3, "tau": 0x03C4,
+	"lscript": 0x2113, "element": 0x2208, "follows": 0x227B, "arrowright": 0x2192,
+	"asteriskmath": 0x2217, "periodcentered": 0x00B7,
+	"parenleftbig": '(', "parenrightbig": ')', "bracketleftbig": '[', "bracketrightbig": ']',
+	"vextendsingle": '|', "braceleftBigg": '{', "parenleftbigg": '(', "parenrightbigg": ')',
+	"summationdisplay": 0x2211, "summationtext": 0x2211,
+
+	"ff": 0xFB00, "fi": 0xFB01, "fl": 0xFB02, "ffi": 0xFB03, "ffl": 0xFB04,
 	// Common punctuation and quotes
 	"space":         0x0020,
 	"exclam":        0x0021,

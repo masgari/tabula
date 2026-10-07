@@ -156,6 +156,8 @@ text, warnings, err := tabula.Open("book.epub").Text()
 
 ### Extract as Markdown
 
+PDF Markdown export preserves reading order, headings, lists, and ruled tables directly from the document. Display equations retain approximate spatial layout in fenced text blocks; this is not a PDF-to-LaTeX converter. Use `Chunks()` for RAG output. Chunk IDs or chunk separators in `ToMarkdownWithOptions` also select the chunk-based export.
+
 ```go
 // PDF with header/footer exclusion
 markdown, warnings, err := tabula.Open("document.pdf").
@@ -534,7 +536,7 @@ markdown, _, _ := tabula.Open("presentation.pptx").ToMarkdownWithOptions(opts)
 markdown, _, _ := tabula.Open("page.html").ToMarkdownWithOptions(opts)
 markdown, _, _ := tabula.Open("book.epub").ToMarkdownWithOptions(opts)
 
-// PDF-only options (used via RAG chunking pipeline)
+// PDF-only options (chunk IDs or separators select RAG chunk export)
 pdfOpts := rag.MarkdownOptions{
     IncludeMetadata:        true,
     IncludeChunkSeparators: true,   // --- between chunks (PDF only)
