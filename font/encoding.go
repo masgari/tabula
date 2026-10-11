@@ -146,6 +146,20 @@ func DecodeWithEncoding(data []byte, encodingName string) string {
 	return NormalizeUnicode(decoded)
 }
 
+// DecodePDFTextString decodes a PDF text string (Info dictionary, outlines, etc.)
+// per ISO 32000: UTF-16 with BOM, otherwise PDFDocEncoding.
+func DecodePDFTextString(data []byte) string {
+	if len(data) >= 2 {
+		if data[0] == 0xFE && data[1] == 0xFF {
+			return NormalizeUnicode(DecodeUTF16BE(data[2:]))
+		}
+		if data[0] == 0xFF && data[1] == 0xFE {
+			return NormalizeUnicode(DecodeUTF16LE(data[2:]))
+		}
+	}
+	return NormalizeUnicode(PDFDocEncoding.DecodeString(data))
+}
+
 // CustomEncoding represents an encoding with custom differences applied to a base encoding
 // This implements the PDF Differences array mechanism where specific character codes
 // are overridden to map to different glyphs

@@ -12,6 +12,7 @@ import (
 	"github.com/tsawler/tabula/core"
 	"github.com/tsawler/tabula/docx"
 	"github.com/tsawler/tabula/epubdoc"
+	"github.com/tsawler/tabula/font"
 	"github.com/tsawler/tabula/format"
 	"github.com/tsawler/tabula/htmldoc"
 	"github.com/tsawler/tabula/layout"
@@ -1579,32 +1580,32 @@ func (e *Extractor) Document() (*model.Document, []Warning, error) {
 		if info, err := e.reader.GetInfo(); err == nil && info != nil {
 			if title := info.Get("Title"); title != nil {
 				if s, ok := title.(core.String); ok {
-					doc.Metadata.Title = string(s)
+					doc.Metadata.Title = font.DecodePDFTextString([]byte(s))
 				}
 			}
 			if author := info.Get("Author"); author != nil {
 				if s, ok := author.(core.String); ok {
-					doc.Metadata.Author = string(s)
+					doc.Metadata.Author = font.DecodePDFTextString([]byte(s))
 				}
 			}
 			if subject := info.Get("Subject"); subject != nil {
 				if s, ok := subject.(core.String); ok {
-					doc.Metadata.Subject = string(s)
+					doc.Metadata.Subject = font.DecodePDFTextString([]byte(s))
 				}
 			}
 			if creator := info.Get("Creator"); creator != nil {
 				if s, ok := creator.(core.String); ok {
-					doc.Metadata.Creator = string(s)
+					doc.Metadata.Creator = font.DecodePDFTextString([]byte(s))
 				}
 			}
 			if producer := info.Get("Producer"); producer != nil {
 				if s, ok := producer.(core.String); ok {
-					doc.Metadata.Producer = string(s)
+					doc.Metadata.Producer = font.DecodePDFTextString([]byte(s))
 				}
 			}
 			if keywords := info.Get("Keywords"); keywords != nil {
 				if s, ok := keywords.(core.String); ok {
-					doc.Metadata.Keywords = strings.Split(string(s), ",")
+					doc.Metadata.Keywords = strings.Split(font.DecodePDFTextString([]byte(s)), ",")
 					for i, kw := range doc.Metadata.Keywords {
 						doc.Metadata.Keywords[i] = strings.TrimSpace(kw)
 					}
